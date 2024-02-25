@@ -14,7 +14,8 @@ func InitServer() error {
 	router := gin.Default()
 
 	corsConfig := cors.Config{
-		AllowMethods: []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD"},
+		AllowMethods:    []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD"},
+		AllowAllOrigins: true,
 	}
 
 	router.Use(cors.New(corsConfig))
@@ -23,6 +24,7 @@ func InitServer() error {
 
 	err := router.Run(address)
 	if err != nil {
+		fmt.Printf("error while starting router")
 		return err
 	}
 
