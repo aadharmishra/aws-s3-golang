@@ -3,7 +3,7 @@ package config
 import (
 	"awsS3Golang/config/models"
 	"encoding/json"
-	"log"
+	"fmt"
 	"os"
 )
 
@@ -16,13 +16,14 @@ func InitConfig() error {
 	configFile := "/Users/aadharmishra/Documents/github/aws-s3-golang/config.json"
 	data, err = os.ReadFile(configFile)
 	if err != nil {
+		fmt.Printf("error while reading config.")
 		return err
 	}
 
 	err = json.Unmarshal(data, &GlobalConfig)
 
 	if err != nil || GlobalConfig == nil {
-		log.Fatalf("Error getting creds: %s", err)
+		fmt.Printf("error while mapping config.")
 		return err
 	}
 

@@ -15,5 +15,6 @@ func BindRoutes(router *gin.Engine, config *models.Config) {
 	routerApi := router.Group("/aws/s3")
 	{
 		routerApi.POST("/upload", service.PostDocumentToS3)
+		routerApi.GET("/get", service.GetDocumentFromS3)
 	}
 }
